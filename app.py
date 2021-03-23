@@ -234,8 +234,10 @@ def delete_movie(id):
 if __name__ == '__main__':
     
     # to initiliaze the db for the app
+    print("initializing database")
     initialize_db(app)
 
+    print("initiliazing routes")
     # to initialize the routes for the apis
     initialize_routes(api)
 
