@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1>Welcome to Movies</h1>
+        {% if not session.logged_in %}
+            <a href='/register' class='btn btn-primary' btn-lg>Register</a>
+            <a href='/login' class='btn btn-success'>Login</a>
+        {% endif %}
+    </div>
+{% endblock %}

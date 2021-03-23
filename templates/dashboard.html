@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <h1>Dashboard</h1>
+    {% if session.is_admin %}
+        <a class='btn btn-success' href='/add_movie'>Add Movie</a>
+    {% endif %}    
+    <hr>
+    
+        <table class='table table-striped'>
+            <tr>
+                
+                <th>Name</th>
+                <th>Genres</th>
+                <th>Director</th>
+                <th>IMDB SCORE</th>
+                <th>Popularity</th>
+                {% if session.is_admin %}
+                <th>Edit</th>
+                <th>Delete</th>
+                {% endif %}
+            </tr>
+    {% for movie in movies %}
+    <tr>
+        
+        <td>{{movie.name}}</td>
+        <td>{{movie.genres}}</td>
+        <td>{{movie.director}}</td>
+        <td>{{movie.imdb_score}}</td>
+        <td>{{movie.popularity99}}</td>
+        {% if session.is_admin %}
+            <td><a href="/edit_movie/{{movie._id['$oid']}}" class='btn btn-primary pullright'>EDIT</a></td>
+            <td>
+                <form action=" {{url_for('delete_movie', id= movie._id['$oid'] )}}" method="post">
+                    <input type='hidden' name='method' value="DELETE">
+                    <input type="submit" value="Delete" class='btn btn-danger'>
+                </form>
+            </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </table>
+    {% endblock %}

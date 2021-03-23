@@ -1,0 +1,8 @@
+{
+    "local": {
+        "url": "http://localhost:5000"
+    },
+    "heroku": {
+        "url" : "http://"
+    }
+}
