@@ -239,4 +239,4 @@ bcrypt = Bcrypt(app)
 app.secret_key = 'secret123'
 
 # to test the changes
-app.run(debug=True)
+app.run()
