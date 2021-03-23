@@ -91,6 +91,7 @@ def login():
         json['email'] = email
         json['password'] = password
         print(password)
+        print("all movies are ", Movie.objects().to_json())
         r = requests.post(url = apiurl+"/api/login", json=json)
         print(apiurl)
         print(r)
@@ -242,6 +243,6 @@ if __name__ == '__main__':
 
     # secret key of the app
     app.secret_key = getenv("secret_key")
-
+    print(app.secret_key)
     # to test the changes
     app.run()
