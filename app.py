@@ -226,17 +226,19 @@ def delete_movie(id):
         flash('there is something wrong','error')
     return redirect(url_for('dashboard'))
 
-# to initiliaze the db for the app
-initialize_db(app)
+if __name__ == '__main__':
+    
+    # to initiliaze the db for the app
+    initialize_db(app)
 
-# to initialize the routes for the apis
-initialize_routes(api)
+    # to initialize the routes for the apis
+    initialize_routes(api)
 
-# to provide a simple interface for overriding Werkzeug's built-in password hashing utilities.
-bcrypt = Bcrypt(app)
+    # to provide a simple interface for overriding Werkzeug's built-in password hashing utilities.
+    bcrypt = Bcrypt(app)
 
-# secret key of the app
-app.secret_key = 'secret123'
+    # secret key of the app
+    app.secret_key = 'secret123'
 
-# to test the changes
-app.run()
+    # to test the changes
+    app.run()
