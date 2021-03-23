@@ -114,7 +114,7 @@ def dashboard():
         result = []
         if genre.lower() == 'all':
             if name=="":
-                r = requests.get('http://localhost:5000/api/movies')
+                r = requests.get(apiurl+'/api/movies')
                 result = r.json()
             else:
                 result = Movie.objects(name=name).to_json()
@@ -131,7 +131,7 @@ def dashboard():
             result = json.loads(result)
             
         return render_template('dashboard.html',movies=result)
-    r = requests.get('http://localhost:5000/api/movies')
+    r = requests.get(apiurl+'/api/movies')
     if (r.json()):
         return render_template('dashboard.html', movies=r.json())
     else:
@@ -166,7 +166,7 @@ def add_movie():
         json["imdb_score"] = imdb_score
         json["popularity99"] = popularity99
         print(json)
-        r = requests.post(url="http://localhost:5000/api/movies", json=json)
+        r = requests.post(url=apiurl+"/api/movies", json=json)
         if r.status_code==200:
             flash('Movie has been added succesfully', 'success')
             return redirect(url_for('dashboard'))
@@ -181,7 +181,7 @@ def add_movie():
 @is_logged_in
 @is_admin
 def edit_movie(id):
-    r = requests.get(url='http://localhost:5000/api/movies/'+id)
+    r = requests.get(url=apiurl+'/api/movies/'+id)
     form = MovieForm(request.form)
     form.name.data = r.json()['name']
     form.director.data = r.json()['director']
@@ -203,7 +203,7 @@ def edit_movie(id):
         json["imdb_score"] = imdb_score
         json["popularity99"] = popularity99
         print(json)
-        r = requests.put(url="http://localhost:5000/api/movies/"+id, json=json)
+        r = requests.put(url=apiurl+"/api/movies/"+id, json=json)
         if r.status_code==200:
             flash('Movie updated', 'success')
             return redirect(url_for('dashboard'))
@@ -218,7 +218,7 @@ def edit_movie(id):
 @is_logged_in
 @is_admin
 def delete_movie(id):
-    r = requests.delete('http://localhost:5000/api/movies/'+id)
+    r = requests.delete(apiurl+'/api/movies/'+id)
     if r.status_code==200:
         flash('movie deleted successfully','success')
         
