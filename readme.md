@@ -28,8 +28,8 @@ pip install -r requirements.txt
 
 
 ### How to Run
-- set environment variables
--- `env=local` OR `env=heroku` depending on environment you are running in
+- set environment variables  
+-- `env=local` OR `env=heroku` depending on environment you are running in  
 -- `mongodb_host=mongodb://localhost:27017/+yourdbname` OR `mongodb_host=hostedmongodbaddress`
 
 Now run main app ,run this command
