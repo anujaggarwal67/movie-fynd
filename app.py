@@ -238,7 +238,7 @@ if __name__ == '__main__':
     bcrypt = Bcrypt(app)
 
     # secret key of the app
-    app.secret_key = 'secret123'
+    app.secret_key = getenv("secret_key")
 
     # to test the changes
     app.run()
