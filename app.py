@@ -92,9 +92,8 @@ def login():
         json['email'] = email
         json['password'] = password
         print(password)
-        print(getenv("mongodb_host"))
+        print(getenv('mongodb_host'))
         print("all movies are ", Movie.objects().to_json())
-
         r = requests.post(url = apiurl+"/api/login", json=json)
         print(apiurl)
         print(r)
@@ -233,20 +232,21 @@ def delete_movie(id):
         flash('there is something wrong','error')
     return redirect(url_for('dashboard'))
 
+if __name__ == '__main__':
+    
+    # to initiliaze the db for the app
+    print("initializing database")
+    initialize_db(app)
 
-# to initiliaze the db for the app
-print("initializing database")
-initialize_db(app)
+    print("initiliazing routes")
+    # to initialize the routes for the apis
+    initialize_routes(api)
 
-print("initiliazing routes")
-# to initialize the routes for the apis
-initialize_routes(api)
+    # to provide a simple interface for overriding Werkzeug's built-in password hashing utilities.
+    bcrypt = Bcrypt(app)
 
-# to provide a simple interface for overriding Werkzeug's built-in password hashing utilities.
-bcrypt = Bcrypt(app)
-
-# secret key of the app
-app.secret_key = getenv("secret_key")
-print(app.secret_key)
-# to test the changes
-app.run()
+    # secret key of the app
+    app.secret_key = getenv("secret_key")
+    print(app.secret_key)
+    # to test the changes
+    app.run()
