@@ -90,7 +90,10 @@ def login():
         json = {}
         json['email'] = email
         json['password'] = password
+        print(password)
         r = requests.post(url = apiurl+"/api/login", json=json)
+        print(apiurl)
+        print(r)
         if r.status_code == 200:
             session['logged_in'] = True
             session['username'] = email
