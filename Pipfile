@@ -9,6 +9,7 @@ flask-bcrypt = "*"
 flask-mongoengine = "*"
 flask-restful = "*"
 requests = "*"
+gunicorn = "*"
 
 [dev-packages]
 
