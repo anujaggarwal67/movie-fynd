@@ -3,6 +3,6 @@
         "url": "http://localhost:5000"
     },
     "heroku": {
-        "url" : "http://"
+        "url" : "https://moviefynd.herokuapp.com"
     }
 }
