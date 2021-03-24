@@ -1,4 +1,5 @@
 # Movies
+# Movies app with flask_restful api
 ### Get movie ratings 
 
 This app will show you the information of movies like genre and ratings. 
