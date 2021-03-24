@@ -1,13 +1,13 @@
+from database.models import Movie
 from flask import Flask, request, render_template, flash, redirect, url_for, session, logging
 from flask_bcrypt import Bcrypt
-from database.db import initialize_db
+from database.db import initialize_db, db
 from flask_restful import Api
 from resources.routes import initialize_routes
 from resources.errors import errors
 from resources.Form import RegisterForm, MovieForm
 import requests
 from functools import wraps
-from database.models import Movie
 import json
 from os import getcwd, path, getenv
 
@@ -26,7 +26,8 @@ api = Api(app, errors = errors)
 
 app.config['MONGODB_SETTINGS'] = {
     'host': getenv("mongodb_host"),
-    'alias': "mongodb://localhost:27017/FYND1"
+    'db' : 'fynd',
+    'alias': 'default'
 }
 
 # decorator to check if a user is logged in or not
@@ -237,6 +238,10 @@ if __name__ == '__main__':
     # to initiliaze the db for the app
     print("initializing database")
     initialize_db(app)
+
+    # testing db is connected properly
+    # print('testing db connection by call db.stats()')
+    
 
     print("initiliazing routes")
     # to initialize the routes for the apis
