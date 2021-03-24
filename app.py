@@ -26,7 +26,7 @@ api = Api(app, errors = errors)
 
 app.config['MONGODB_SETTINGS'] = {
     'host': getenv("mongodb_host"),
-    'alias': 'default'
+    'alias': "mongodb://localhost:27017/FYND1"
 }
 
 # decorator to check if a user is logged in or not
